@@ -45,7 +45,7 @@ public class PersonMedDialog extends DialogFragment {
     public static final String TAG = "FullScreenDialog";
     private Retrofit mRetrofit;
     private RetrofitService mRetrofitAPI;
-    String birthDate;
+    private String birthDate;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,24 +67,6 @@ public class PersonMedDialog extends DialogFragment {
 
     private Calendar birthCalender = Calendar.getInstance();
 
-    private String showDate() {
-
-        new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                birthCalender.set(Calendar.YEAR, year);
-                birthCalender.set(Calendar.MONTH, month);
-                birthCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                String myFormat = "yyyy-MM-dd";    // 출력형식   2018/11/28
-                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
-                birthDate = sdf.format(birthCalender.getTime());
-
-            }
-        }, birthCalender.get(Calendar.YEAR), birthCalender.get(Calendar.MONTH), birthCalender.get(Calendar.DAY_OF_MONTH)).show();
-
-        return birthDate;
-    }
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -97,26 +79,37 @@ public class PersonMedDialog extends DialogFragment {
         String name = mArgs.getString("name");
         String userBirth = mArgs.getString("userBirth");
         String userAllergy = mArgs.getString("userAllergy");
+        String userDisease = mArgs.getString("userDisease");
         String userBloodtype = mArgs.getString("userBloodtype");
         String userHeight = mArgs.getString("userHeight");
         String userWeight = mArgs.getString("userWeight");
         String userEmerContact = mArgs.getString("userEmerContact");
 
         final TextView textName = view.findViewById(R.id.textName);
+        final Button selectBtn = view.findViewById(R.id.selectBtn);
         final EditText textBirth = view.findViewById(R.id.textBirth);
         final EditText textAllergyD = view.findViewById(R.id.textAllergyD);
+        final EditText textDiseaseD = view.findViewById(R.id.textDiseaseD);
         final EditText textBloodtypeD = view.findViewById(R.id.textBloodtypeD);
         final EditText textHeightD = view.findViewById(R.id.textHeightD);
         final EditText textWeightD = view.findViewById(R.id.textWeightD);
         final EditText textEmerContactD = view.findViewById(R.id.textEmerContactD);
 
-
-
-        textBirth.setOnClickListener(new View.OnClickListener() {
+        selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String birth = showDate();
-                textBirth.setText(birth);
+                new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        birthCalender.set(Calendar.YEAR, year);
+                        birthCalender.set(Calendar.MONTH, month);
+                        birthCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        String myFormat = "yyyy-MM-dd";    // 출력형식   2018/11/28
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
+                        birthDate = sdf.format(birthCalender.getTime());
+                        textBirth.setText(birthDate);
+                    }
+                }, birthCalender.get(Calendar.YEAR), birthCalender.get(Calendar.MONTH), birthCalender.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -129,6 +122,9 @@ public class PersonMedDialog extends DialogFragment {
 
         textAllergyD.setText(userAllergy);
         textAllergyD.setSelection(textAllergyD.getText().length());
+
+        textDiseaseD.setText(userDisease);
+        textDiseaseD.setSelection(textDiseaseD.getText().length());
 
         textBloodtypeD.setText(userBloodtype);
         textBloodtypeD.setSelection(textBloodtypeD.getText().length());
@@ -152,12 +148,13 @@ public class PersonMedDialog extends DialogFragment {
 
                 String Birthday = textBirth.getText().toString();
                 String Allergy = textAllergyD.getText().toString();
+                String Disease = textDiseaseD.getText().toString();
                 String Bloodtype = textBloodtypeD.getText().toString();
                 String Height = textHeightD.getText().toString();
                 String Weight = textWeightD.getText().toString();
                 String EmerContact = textEmerContactD.getText().toString();
 
-                Call<JsonObject> editData = mRetrofitAPI.setPersonInfo(userID, Birthday,"yyyyyy", Allergy, Bloodtype, Height, Weight, EmerContact);
+                Call<JsonObject> editData = mRetrofitAPI.setPersonInfo(userID, Birthday,Disease, Allergy, Bloodtype, Height, Weight, EmerContact);
 
                 System.out.println(editData);
 
@@ -179,6 +176,7 @@ public class PersonMedDialog extends DialogFragment {
                 Intent data = new Intent();
                 data.putExtra("textBirth", Birthday);
                 data.putExtra("textAllergy", Allergy);
+                data.putExtra("textDisease", Disease);
                 data.putExtra("textBloodtype", Bloodtype);
                 data.putExtra("textHeight", Height);
                 data.putExtra("textWeight", Weight);

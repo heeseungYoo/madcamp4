@@ -49,14 +49,28 @@
                 android:text="name"
                 android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/textBirth"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:clickable="true"
-                android:text="userBirth"
-                android:textSize="18sp" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/textBirth"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="3"
+                    android:clickable="true"
+                    android:text="userBirth"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/selectBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="선택" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView8"
@@ -72,6 +86,20 @@
                 android:textSize="16sp"
                 android:hint="userAllergy" />
 
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="의학적 질환" />
+
+            <EditText
+                android:id="@+id/textDiseaseD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"
+                android:hint="userDisease"/>
 
             <TextView
                 android:id="@+id/textView10"

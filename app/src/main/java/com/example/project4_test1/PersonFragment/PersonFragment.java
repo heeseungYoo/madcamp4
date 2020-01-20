@@ -43,6 +43,7 @@ public class PersonFragment extends Fragment {
         final TextView textName = v.findViewById(R.id.textName);
         final TextView textBirth = v.findViewById(R.id.textBirth);
         final TextView textAllergy = v.findViewById(R.id.textAllergy);
+        final TextView textDisease = v.findViewById(R.id.textDisease);
         final TextView textBloodtype = v.findViewById(R.id.textBloodtype);
         final TextView textHeight = v.findViewById(R.id.textHeight);
         final TextView textWeight = v.findViewById(R.id.textWeight);
@@ -59,6 +60,7 @@ public class PersonFragment extends Fragment {
                 textName.setText(personJA.get(0).getAsJsonObject().get("name").getAsString());
                 textBirth.setText(personJA.get(0).getAsJsonObject().get("userBirth").getAsString());
                 textAllergy.setText(personJA.get(0).getAsJsonObject().get("userAllergy").getAsString());
+                textDisease.setText(personJA.get(0).getAsJsonObject().get("userDisease").getAsString());
                 textBloodtype.setText(personJA.get(0).getAsJsonObject().get("userBloodtype").getAsString());
                 textHeight.setText(personJA.get(0).getAsJsonObject().get("userHeight").getAsString());
                 textWeight.setText(personJA.get(0).getAsJsonObject().get("userWeight").getAsString());
@@ -83,6 +85,7 @@ public class PersonFragment extends Fragment {
                 args.putString("userBirth", textBirth.getText().toString());
                 args.putString("name", textName.getText().toString());
                 args.putString("userAllergy", textAllergy.getText().toString());
+                args.putString("userDisease", textDisease.getText().toString());
                 args.putString("userBloodtype", textBloodtype.getText().toString());
                 args.putString("userHeight", textHeight.getText().toString());
                 args.putString("userWeight", textWeight.getText().toString());
@@ -124,6 +127,10 @@ public class PersonFragment extends Fragment {
                 String Allergy = data.getExtras().getString("textAllergy");
                 TextView userAllergy = v.findViewById(R.id.textAllergy);
                 userAllergy.setText(Allergy);
+
+                String Disease = data.getExtras().getString("textDisease");
+                TextView userDisease = v.findViewById(R.id.textDisease);
+                userDisease.setText(Disease);
 
                 String Bloodtype = data.getExtras().getString("textBloodtype");
                 TextView userBloodtype = v.findViewById(R.id.textBloodtype);

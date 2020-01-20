@@ -30,14 +30,13 @@ public class InfoFragment extends Fragment {
         v = inflater.inflate(R.layout.fragment_info, container, false);
 
         listView = v.findViewById(R.id.main_listView);
-        textView = v.findViewById(R.id.main_textView);
+        //textView = v.findViewById(R.id.main_textView);
         String[] first_aid = getResources().getStringArray(R.array.first_aid);
 
         List<String> FirstAidList = new ArrayList<>(Arrays.asList(first_aid));
         ListAdapter = new ArrayAdapter<>(
                 v.getContext(),
-                R.layout.activity_main,
-                R.id.main_textView,
+                android.R.layout.simple_list_item_1,
                 FirstAidList
         );
         listView.setAdapter(ListAdapter);
