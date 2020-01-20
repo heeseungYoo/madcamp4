@@ -43,12 +43,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class PersonMedDialog extends DialogFragment {
 
     public static final String TAG = "FullScreenDialog";
-    private TextView userAllergy;
-    private TextView userBloodtype;
-    private TextView userHeight;
-    private TextView userWeight;
-    private TextView userEmerContact;
-    private TextInputEditText userAllergyD;
     private Retrofit mRetrofit;
     private RetrofitService mRetrofitAPI;
     String birthDate;
@@ -121,8 +115,8 @@ public class PersonMedDialog extends DialogFragment {
         textBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textBirth.setText(showDate());
-
+                String birth = showDate();
+                textBirth.setText(birth);
             }
         });
 

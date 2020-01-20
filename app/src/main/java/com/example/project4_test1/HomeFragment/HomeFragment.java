@@ -10,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.project4_test1.R;
+import com.example.project4_test1.RetrofitService;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -34,27 +36,78 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class HomeFragment extends Fragment {
 
     private View v;
-    ImageButton button_call;
-    Button button_findAED;
-    LinearLayout map_container;
+    private ImageButton button_call;
+    private Button button_findAED;
+    private LinearLayout map_container;
 
-    Double latitude;
-    Double longitude;
+    private Double latitude;
+    private Double longitude;
 
-    MapView mapView;
+    private MapView mapView;
+    private GoogleMap map;
 
-    SupportMapFragment mapFragment;
-    GoogleMap map;
+    private Retrofit mRetrofit;
+    private RetrofitService mRetrofitAPI;
+
+    private String userName;
+    private String userBirth;
+    private String userAllergy;
+    private String userBloodtype;
+    private String userHeight;
+    private String userWeight;
+    private String userEmerContact;
+    private String userDisease;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_home, container, false);
+
+        Intent intent = getActivity().getIntent();
+        final String userID = intent.getStringExtra("userID");
+
+        setPersonRetrofitInit();
+
+        Call<JsonArray> personData = mRetrofitAPI.getPersonInfo(userID);
+
+        Callback<JsonArray> mRetrofitCallback = new Callback<JsonArray>() {
+            @Override
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                JsonArray personJA = response.body();
+                userName = personJA.get(0).getAsJsonObject().get("name").getAsString();
+                userBirth = personJA.get(0).getAsJsonObject().get("userBirth").getAsString();
+                userAllergy = personJA.get(0).getAsJsonObject().get("userAllergy").getAsString();
+                userBloodtype = personJA.get(0).getAsJsonObject().get("userBloodtype").getAsString();
+                userHeight = personJA.get(0).getAsJsonObject().get("userHeight").getAsString();
+                userWeight = personJA.get(0).getAsJsonObject().get("userWeight").getAsString();
+                userEmerContact = personJA.get(0).getAsJsonObject().get("userEmerContact").getAsString();
+                userDisease = personJA.get(0).getAsJsonObject().get("userDisease").getAsString();
+            }
+
+            @Override
+            public void onFailure(Call<JsonArray> call, Throwable t) {
+                t.printStackTrace();
+                Log.e("Err", t.getMessage());
+            }
+        };
+
+        personData.enqueue(mRetrofitCallback);
 
         //전화 걸기 PERMISSION 요청
         permission permission_check = new permission();
@@ -158,13 +211,38 @@ public class HomeFragment extends Fragment {
         final Button btn_yes = view.findViewById(R.id.button_sendinfo_yes);
         final Button btn_no = view.findViewById(R.id.button_sendinfo_no);
 
-
         //내가 다친 경우
         btn_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //현위치랑 내정보를 보내고 전화연결
                 //=====할것 : 서버에 내정보 보내기 ===============
+                JSONObject myInfo = new JSONObject();
+                try {
+                    myInfo.put("userName", userName);
+                    myInfo.put("userBirth", userBirth);
+                    myInfo.put("userAllergy", userAllergy);
+                    myInfo.put("userDisease", userDisease);
+                    myInfo.put("userBloodtype", userBloodtype);
+                    myInfo.put("userHeight", userHeight);
+                    myInfo.put("userWeight", userWeight);
+                    myInfo.put("userEmerContact", userEmerContact);
+                    myInfo.put("myLatitude", latitude);
+                    myInfo.put("myLongitude", longitude);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                String json = myInfo.toString();
+                HomeSendInfoTo119 task = new HomeSendInfoTo119();
+                try {
+                    boolean success = task.execute(json).get();
+                    Toast.makeText(getContext(), "전송 결과: "+success, Toast.LENGTH_SHORT).show();
+                } catch (InterruptedException e) {
+                e.printStackTrace();
+               } catch (ExecutionException e) {
+               e.printStackTrace();
+               }
+
                 dialog.dismiss();
                 call_119();
             }
@@ -174,6 +252,26 @@ public class HomeFragment extends Fragment {
         btn_no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                JSONObject otherInfo = new JSONObject();
+                try {
+                    otherInfo.put("applicant", userName);
+                    otherInfo.put("myLatitude", latitude);
+                    otherInfo.put("myLongitude", longitude);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                String json = otherInfo.toString();
+                HomeSendInfoTo119 task = new HomeSendInfoTo119();
+
+                try {
+                    boolean success = task.execute(json).get();
+                    Toast.makeText(getContext(), "전송 결과: "+success, Toast.LENGTH_SHORT).show();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
                 //현위치랑 내정보를 신고자로써 보내고 전화연결
                 //========할것 : 서버에 신고정보 보내기 ================
                 dialog.dismiss();
@@ -282,5 +380,16 @@ public class HomeFragment extends Fragment {
                 return info;
             }
         });
+    }
+
+    private void setPersonRetrofitInit() {
+        String baseUrl = "http://192.249.19.251:980/";
+        mRetrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        mRetrofitAPI = mRetrofit.create(RetrofitService.class);
+
     }
 }
