@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/quiz_background">
 
     <LinearLayout
+        android:id="@+id/quiz_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center">
@@ -17,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Q1."
+            android:visibility="invisible"
             android:textSize="20dp"
             android:id="@+id/question_number"
             android:layout_marginRight="10dp"
@@ -24,6 +27,7 @@
 
         <TextView
             android:layout_width="match_parent"
+            android:visibility="invisible"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ridibatang"
             android:textSize="20dp"
@@ -37,6 +41,7 @@
         android:layout_margin = "20dp"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:visibility="invisible"
         android:id="@+id/recyclerview_quizitem"/>
 
 
@@ -49,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이전 문제"
+            android:visibility="invisible"
             android:fontFamily="@font/ridibatang"
             android:id="@+id/button_previous_question"
             android:layout_marginRight="20dp"
@@ -57,7 +63,16 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="퀴즈 시작"
+            android:fontFamily="@font/ridibatang"
+            android:id="@+id/button_start_quiz"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="다음 문제"
+            android:visibility="invisible"
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/ridibatang"
             android:id="@+id/button_next_question"

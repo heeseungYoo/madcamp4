@@ -1,6 +1,7 @@
 package com.example.project4_test1.QuizFragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +24,7 @@ public class QuizFragment extends Fragment {
     TextView textView_question;
     Button button_next_question;
     Button button_previous_question;
+    Button button_start_quiz;
 
     QuizAdapter adapter;
     QuizAdapter.OnItemClickListener mListener;
@@ -40,6 +43,7 @@ public class QuizFragment extends Fragment {
         textView_question = v.findViewById(R.id.question);
         button_next_question = v.findViewById(R.id.button_next_question);
         button_previous_question = v.findViewById(R.id.button_previous_question);
+        button_start_quiz = v.findViewById(R.id.button_start_quiz);
 
         //quiz에 필요한 값 전달
         quiz_questions = getResources().getStringArray(R.array.quiz_question);
@@ -51,6 +55,22 @@ public class QuizFragment extends Fragment {
         recyclerView = v.findViewById(R.id.recyclerview_quizitem) ;
         recyclerView.setLayoutManager(new LinearLayoutManager
                 (getContext(), LinearLayoutManager.VERTICAL, false));
+
+        // 퀴즈 시작 버튼 리스너 등록
+        button_start_quiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recyclerView.setVisibility(View.VISIBLE);
+                textView_question_number.setVisibility(View.VISIBLE);
+                textView_question.setVisibility(View.VISIBLE);
+                button_next_question.setVisibility(View.VISIBLE);
+                button_previous_question.setVisibility(View.VISIBLE);
+
+                button_start_quiz.setVisibility(View.INVISIBLE);
+                v.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.quiz_background_simple));
+
+            }
+        });
 
         // 다음 문제 버튼 리스너 등록
         button_next_question.setOnClickListener(new View.OnClickListener() {

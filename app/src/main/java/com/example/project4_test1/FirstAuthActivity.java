@@ -17,7 +17,7 @@ public class FirstAuthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         permission permission_check = new permission();
-        permission_check.checkPermissions(getApplicationContext());
+        permission_check.checkPermissions(this);
 
         if (SaveSharedPreference.getUserID(FirstAuthActivity.this).length() == 0) {
             intent = new Intent(FirstAuthActivity.this, LoginActivity.class);
