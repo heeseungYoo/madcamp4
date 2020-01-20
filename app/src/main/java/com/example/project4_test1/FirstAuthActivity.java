@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.project4_test1.HomeFragment.permission;
+
 public class FirstAuthActivity extends AppCompatActivity {
 
     private Intent intent;
@@ -13,6 +15,9 @@ public class FirstAuthActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        permission permission_check = new permission();
+        permission_check.checkPermissions(getApplicationContext());
 
         if (SaveSharedPreference.getUserID(FirstAuthActivity.this).length() == 0) {
             intent = new Intent(FirstAuthActivity.this, LoginActivity.class);
@@ -25,4 +30,5 @@ public class FirstAuthActivity extends AppCompatActivity {
             this.finish();
         }
     }
+
 }
