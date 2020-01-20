@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment {
 
         personData.enqueue(mRetrofitCallback);
 
-        //전화 걸기 PERMISSION 요청
+        //전화 걸기 PERMISSION 요청---
         permission permission_check = new permission();
         permission_check.checkPermissions(getContext());
 
