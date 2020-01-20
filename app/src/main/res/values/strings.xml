@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">TestFor4st</string>
+
+    <string-array name="first_aid">
+        <item>심폐소생술</item>
+        <item>하임리히법(성인)</item>
+        <item>하임리히법(영아)</item>
+        <item>화상</item>
+    </string-array>
+
+    <string-array name="cpr">
+        <item>환자를 바로 눕힌 후 어깨를 가볍게 치면서 의식이 있는지 확인</item>
+        <item>주변 사람들에게 119 호출 및 자동제세동기를 가져올 것을 요청</item>
+        <item>숨을 정상적으로 쉬는지 확인</item>
+        <item>시술자의 어깨는 환자의 흉골이 맞닿는 부위와 수직이 되게 위치</item>
+        <item>머리를 젖힌 손의 검지와 엄지로 코를 막음</item>
+        <item>가슴 상승이 눈으로 확인될 정도로 실시</item>
+        <item></item> <!--이거 없으면 멈춰요..-->
+        <item></item> <!--이거 없으면 멈춰요..-->
+        <item></item> <!--이거 없으면 멈춰요..-->
+    </string-array>
+
+    <string-array name="H">
+        <item>환자가 숨쉬기 힘들어 하거나 목을 감싸 괴로움을 호소할 경우 기도폐쇄로 판단하고 주변에 119에 신고 요청</item>
+        <item>주먹을 쥔 손의 엄지손가락 방향을 배 윗부분에 대고 다른 한 손을 위에 겹친 후 환자의 배꼽에서 명치 사이의 배 부위를 두 손으로 위로 쓸어올리듯 강하게 밀어 올려서 이물을 제거하고 이물이 밖으로 나왔는지 확인</item>
+    </string-array>
+
+    <string-array name="HY">
+        <item>주변에 119 신고를 요청. 환자의 얼굴이 우로 향하도록 환자를 자신의 팔위에 올려놓고 손으로는 환자의 머리와 경부가 고정되도록 함.다른 팔을 이용해 환자의 얼굴이 아래로 향하도록 뒤집어서 환자를 떠받침</item>
+        <item>영아의 머리를 가슴보다 낮게 하고, 영아를 안은 팔을 허벅지에 고정시킨 뒤 손바닥으로 영아의 어깨죽지 사이를 5회 두드림</item>
+        <item>영아의 등을 받치고, 머리를 가슴보다 낮게 하여,영아를 안은 팔을 무릎 위에 놓음.영아의 유두사이에 가상선을 긋고, 검지와 중지를 흉골에 올려놓고 5회 압박을 시행</item>
+        <item>영아의 구강내 이물질을 확인하여 제거.영아가 의식을 잃거나, 이물이 배출되거나, 힘차게 숨을 쉬거나, 기침을 할 때까지 계속 반복 실</item>
+    </string-array>
+
+    <string-array name="burn">
+        <item>흐르는 찬물에 식혀주세요</item>
+        <item>상처 부위는 거즈로 감싸주세요</item>
+        <item>화상 부위의 물질들은 떼어내지 마세요</item>
+        <item>화상 부위에는 아무것도 바르면 안돼요</item>
+        <item>119에 신고해요</item>
+    </string-array>
+</resources>
