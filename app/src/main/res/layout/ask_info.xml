@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="내 정보를 보내시겠습니까?"
+        android:textColor="#000000"
+        android:fontFamily="@android:string/dialog_alert_title"/>
+
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp">
+
+        <Button
+            android:layout_width="250dp"
+            android:id="@+id/button_sendinfo_yes"
+            android:layout_height="40dp"
+            android:text="예"
+            android:backgroundTintMode="multiply"
+            android:backgroundTint="#8cd790"
+            android:background="@drawable/round_button"/>
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:id="@+id/button_sendinfo_no"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:text="아니요"
+            android:backgroundTintMode="multiply"
+            android:backgroundTint="#de7273"
+            android:background="@drawable/round_button"/>
+
+    </LinearLayout>
+
+</LinearLayout>
