@@ -123,8 +123,6 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println(current_number);
 
-
-
     }
 
     //퀴즈 끝나고 점수화면 Alert Dialog로 띄어줌, 점수에 따라 다른 text 세팅
