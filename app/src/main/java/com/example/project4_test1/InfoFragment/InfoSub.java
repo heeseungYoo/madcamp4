@@ -32,8 +32,8 @@ public class InfoSub extends AppCompatActivity {
         viewPager.setClipToPadding(false);
         float density = getResources().getDisplayMetrics().density;
         int margin = (int) (DP * density);
-        viewPager.setPadding(margin, 0, margin, 0);
-        viewPager.setPageMargin(margin/2);
+//        viewPager.setPadding(margin, 0, margin, 0);
+//        viewPager.setPageMargin(margin/2);
 
         String[] test = getResources().getStringArray(R.array.cpr); //심폐소생술
         String[] test1 = getResources().getStringArray(R.array.H); //하임리히법(성인)
