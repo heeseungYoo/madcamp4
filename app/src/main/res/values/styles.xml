@@ -8,8 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="FullScreenDialogStyle2" parent="Base.V14.Theme.MaterialComponents.Dialog.Bridge"/>
-
     <style name="FullScreenDialogStyle" parent="Theme.MaterialComponents.Light.Dialog">
         <!--<item name="android:windowNoTitle">true</item>-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
