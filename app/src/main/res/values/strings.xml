@@ -3,10 +3,10 @@
     <string name="save">저장</string>
 
     <string-array name="first_aid">
-        <item>심폐소생술</item>
-        <item>하임리히법(성인)</item>
-        <item>하임리히법(영아)</item>
-        <item>화상</item>
+        <item>◈  심폐소생술</item>
+        <item>◈  하임리히법(성인)</item>
+        <item>◈  하임리히법(영아)</item>
+        <item>◈  화상</item>
     </string-array>
 
     <string-array name="cpr">

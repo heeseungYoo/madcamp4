@@ -1,5 +1,6 @@
 package com.example.project4_test1.InfoFragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.project4_test1.R;
@@ -54,4 +56,5 @@ public class InfoFragment extends Fragment {
             startActivity(intent);
         }
     };
+
 }
