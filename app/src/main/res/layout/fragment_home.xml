@@ -24,8 +24,6 @@
             android:background="@drawable/round_button"
             />
 
-
-
     </FrameLayout>
 
     <Button

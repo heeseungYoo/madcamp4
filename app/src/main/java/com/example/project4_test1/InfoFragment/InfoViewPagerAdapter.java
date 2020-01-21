@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,13 @@ public class InfoViewPagerAdapter extends PagerAdapter {
         TextView textView = view.findViewById(R.id.comment);
         textView.setText(comment[position]);
 
+        LinearLayout tip = view.findViewById(R.id.info_tip);
+
+        if (comment[position].equals("")){
+            tip.setVisibility(View.INVISIBLE);
+        }
+        else
+            tip.setVisibility(View.VISIBLE);
 
         container.addView(view);
 
