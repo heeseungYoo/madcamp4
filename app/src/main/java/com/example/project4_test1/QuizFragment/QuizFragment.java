@@ -2,6 +2,8 @@ package com.example.project4_test1.QuizFragment;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +35,11 @@ public class QuizFragment extends Fragment {
     int quiz_score;
     int current_number;
 
+    SoundPool soundpool;
+    int correct_sound;
+    int incorrect_sound;
+    int quiz_finish_sound;
+
     private View v;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,7 +58,13 @@ public class QuizFragment extends Fragment {
         quiz_score = 0;
         current_number = 1;
 
-        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+        soundpool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        correct_sound = soundpool.load(getContext(), R.raw.success_sound, 1);
+        incorrect_sound = soundpool.load(getContext(), R.raw.wrong_sound, 1);
+        quiz_finish_sound = soundpool.load(getContext(), R.raw.quiz_finish_sound, 1);
+
+
+                // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         recyclerView = v.findViewById(R.id.recyclerview_quizitem) ;
         recyclerView.setLayoutManager(new LinearLayoutManager
                 (getContext(), LinearLayoutManager.VERTICAL, false));
@@ -96,12 +109,14 @@ public class QuizFragment extends Fragment {
                 if ((answer-1)==pos){
                     v.setBackgroundColor(getResources().getColor(R.color.green_right));
                     quiz_score+=10;
+                    soundpool.play(correct_sound, 1, 1, 0, 0, 1);
                 }
 
                 else{
                     v.setBackgroundColor(getResources().getColor(R.color.red_wrong));
                     View view_answer = recyclerView.getLayoutManager().findViewByPosition(answer-1);
                     view_answer.setBackgroundColor(getResources().getColor(R.color.green_right));
+                    soundpool.play(incorrect_sound, 2, 2, 0, 0, 1);
                 }
             }
         };
@@ -161,6 +176,8 @@ public class QuizFragment extends Fragment {
         final ImageView star5 = view.findViewById(R.id.star5);
 
         score.setText(quiz_score+"점");
+
+        soundpool.play(quiz_finish_sound, 1, 1, 0, 0, 1);
 
         switch ((int)quiz_score/20){
             case 0:
