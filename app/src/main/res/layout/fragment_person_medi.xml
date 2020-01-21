@@ -1,167 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/cancelBtn"
-            android:layout_width="wrap_content"
+        app:elevation="0dp">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="취소"/>
+            app:contentInsetStartWithNavigation="0dp"
+            app:navigationIcon="@drawable/ic_close_white_24dp"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-        <Button
-            android:id="@+id/submitBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="저장" />
-
-
-    </LinearLayout>
-
-
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp">
-
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+<!--
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textName"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/cancelBtn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="name"
-                android:textSize="20sp" />
+                android:text="취소"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/submitBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="저장" />
+
+
+        </LinearLayout>
+
+-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-                <EditText
-                    android:id="@+id/textBirth"
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/textName"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_weight="3"
-                    android:clickable="true"
-                    android:text="userBirth"
-                    android:textSize="18sp" />
+                    android:text="name"
+                    android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/selectBtn"
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="선택" />
+                    android:layout_weight="0"
+                    android:text="생년월일" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/textBirth"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="3"
+                        android:clickable="true"
+                        android:text="userBirth"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/selectBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="선택" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="알레르기 및 약물 부작용" />
+
+                <EditText
+                    android:id="@+id/textAllergyD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="16sp"
+                    android:hint="userAllergy" />
+
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="의학적 질환" />
+
+                <EditText
+                    android:id="@+id/textDiseaseD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="16sp"
+                    android:hint="userDisease"/>
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="혈액형" />
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textBloodtypeD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="16sp"
+                    android:hint="userBloodtype" />
+
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="키" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textHeightD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="16sp"
+                    android:hint="userHeight" />
+
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="몸무게" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textWeightD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="16sp"
+                    android:hint="userWeight" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="긴급 연락처" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textEmerContactD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="phone"
+                    android:textSize="16sp"
+                    android:hint="userEmerContact" />
             </LinearLayout>
+        </ScrollView>
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="알레르기 및 약물 부작용" />
-
-            <EditText
-                android:id="@+id/textAllergyD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:textSize="16sp"
-                android:hint="userAllergy" />
+    </FrameLayout>
 
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="의학적 질환" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-            <EditText
-                android:id="@+id/textDiseaseD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:textSize="16sp"
-                android:hint="userDisease"/>
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="혈액형" />
-
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textBloodtypeD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:textSize="16sp"
-                android:hint="userBloodtype" />
-
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="키" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textHeightD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:textSize="16sp"
-                android:hint="userHeight" />
-
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="몸무게" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textWeightD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:textSize="16sp"
-                android:hint="userWeight" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="긴급 연락처" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textEmerContactD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:inputType="phone"
-                android:textSize="16sp"
-                android:hint="userEmerContact" />
-        </LinearLayout>
-    </ScrollView>
-
-
-</LinearLayout>

@@ -3,6 +3,7 @@ package com.example.project4_test1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -65,6 +66,19 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         }
+    }
+
+    public void replaceFragment(Fragment fragment) {
+        System.out.println("---------------------fragment:  " + fragment);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
+        if (fragment.getClass().equals(QuizFragment.class)) {
+            bottomNavigationView.setSelectedItemId(R.id.quizItem);
+        }
+        if (fragment.getClass().equals(HomeFragment.class)) {
+            bottomNavigationView.setSelectedItemId(R.id.homeItem);
+        }
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment).commit();
     }
 
     @Override

@@ -4,25 +4,36 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.project4_test1.MainActivity;
 import com.example.project4_test1.R;
 import com.example.project4_test1.RetrofitService;
+import com.franmontiel.fullscreendialog.FullScreenDialogContent;
+import com.franmontiel.fullscreendialog.FullScreenDialogController;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.JsonObject;
@@ -46,11 +57,18 @@ public class PersonMedDialog extends DialogFragment {
     private Retrofit mRetrofit;
     private RetrofitService mRetrofitAPI;
     private String birthDate;
+    private Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NORMAL, R.style.FullScreenDialogStyle);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.save_menu, menu);
     }
 
     @Override
@@ -62,11 +80,13 @@ public class PersonMedDialog extends DialogFragment {
             int width = ViewGroup.LayoutParams.MATCH_PARENT;
             int height = ViewGroup.LayoutParams.MATCH_PARENT;
             dialog.getWindow().setLayout(width, height);
+            dialog.getWindow().setWindowAnimations(R.style.AppTheme_Slide);
         }
     }
 
-    private Calendar birthCalender = Calendar.getInstance();
 
+    private Calendar birthCalender = Calendar.getInstance();
+/*
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -114,7 +134,6 @@ public class PersonMedDialog extends DialogFragment {
         });
 
 
-
         // 입력되어 있는 값 setText & cursor 위치 끝으로
         textName.setText(name);
 
@@ -153,6 +172,14 @@ public class PersonMedDialog extends DialogFragment {
                 String Height = textHeightD.getText().toString();
                 String Weight = textWeightD.getText().toString();
                 String EmerContact = textEmerContactD.getText().toString();
+
+                if (Height.equals("")) {
+                    Height = "0";
+                }
+
+                if (Weight.equals("")) {
+                    Weight = "0";
+                }
 
                 Call<JsonObject> editData = mRetrofitAPI.setPersonInfo(userID, Birthday,Disease, Allergy, Bloodtype, Height, Weight, EmerContact);
 
@@ -201,7 +228,7 @@ public class PersonMedDialog extends DialogFragment {
         dialog.setCanceledOnTouchOutside(false);
 
         return dialog;
-    }
+    }*/
 
     private void setPersonRetrofitInit() {
         String baseUrl = "http://192.249.19.251:980/";
@@ -213,21 +240,226 @@ public class PersonMedDialog extends DialogFragment {
         mRetrofitAPI = mRetrofit.create(RetrofitService.class);
     }
 
-/*
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle state) {
         super.onCreateView(inflater, parent, state);
 
         View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_person_medi, parent, false);
-        view.findViewById(R.id.submitBtn).setOnClickListener(this);
 
-        Dialog dialog = getDialog();
-        dialog.setCanceledOnTouchOutside(false);
+        toolbar = view.findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_close_white_24dp);
+        toolbar.inflateMenu(R.menu.save_menu);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
 
+
+        // PersonFragment에 입력되어 있는 값 받아오기
+        Bundle mArgs = getArguments();
+        final String userID = mArgs.getString("userID");
+        String name = mArgs.getString("name");
+        String userBirth = mArgs.getString("userBirth");
+        String userAllergy = mArgs.getString("userAllergy");
+        String userDisease = mArgs.getString("userDisease");
+        String userBloodtype = mArgs.getString("userBloodtype");
+        String userHeight = mArgs.getString("userHeight");
+        String userWeight = mArgs.getString("userWeight");
+        String userEmerContact = mArgs.getString("userEmerContact");
+
+        final TextView textName = view.findViewById(R.id.textName);
+        final Button selectBtn = view.findViewById(R.id.selectBtn);
+        final EditText textBirth = view.findViewById(R.id.textBirth);
+        final EditText textAllergyD = view.findViewById(R.id.textAllergyD);
+        final EditText textDiseaseD = view.findViewById(R.id.textDiseaseD);
+        final EditText textBloodtypeD = view.findViewById(R.id.textBloodtypeD);
+        final EditText textHeightD = view.findViewById(R.id.textHeightD);
+        final EditText textWeightD = view.findViewById(R.id.textWeightD);
+        final EditText textEmerContactD = view.findViewById(R.id.textEmerContactD);
+
+        selectBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        birthCalender.set(Calendar.YEAR, year);
+                        birthCalender.set(Calendar.MONTH, month);
+                        birthCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        String myFormat = "yyyy-MM-dd";    // 출력형식   2018/11/28
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
+                        birthDate = sdf.format(birthCalender.getTime());
+                        textBirth.setText(birthDate);
+                    }
+                }, birthCalender.get(Calendar.YEAR), birthCalender.get(Calendar.MONTH), birthCalender.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+        // 입력되어 있는 값 setText & cursor 위치 끝으로
+        textName.setText(name);
+
+        textBirth.setText(userBirth);
+
+        textAllergyD.setText(userAllergy);
+        textAllergyD.setSelection(textAllergyD.getText().length());
+
+        textDiseaseD.setText(userDisease);
+        textDiseaseD.setSelection(textDiseaseD.getText().length());
+
+        textBloodtypeD.setText(userBloodtype);
+        textBloodtypeD.setSelection(textBloodtypeD.getText().length());
+
+        textHeightD.setText(userHeight);
+        textHeightD.setSelection(textHeightD.getText().length());
+
+        textWeightD.setText(userWeight);
+        textWeightD.setSelection(textWeightD.getText().length());
+
+        textEmerContactD.setText(userEmerContact);
+        textEmerContactD.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        textEmerContactD.setSelection(textEmerContactD.getText().length());
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                setPersonRetrofitInit();
+
+                String Birthday = textBirth.getText().toString();
+                String Allergy = textAllergyD.getText().toString();
+                String Disease = textDiseaseD.getText().toString();
+                String Bloodtype = textBloodtypeD.getText().toString();
+                String Height = textHeightD.getText().toString();
+                String Weight = textWeightD.getText().toString();
+                String EmerContact = textEmerContactD.getText().toString();
+
+                if (Height.equals("")) {
+                    Height = "0";
+                }
+
+                if (Weight.equals("")) {
+                    Weight = "0";
+                }
+
+                Call<JsonObject> editData = mRetrofitAPI.setPersonInfo(userID, Birthday,Disease, Allergy, Bloodtype, Height, Weight, EmerContact);
+
+                System.out.println(editData);
+
+                Callback<JsonObject> mRetrofitCallback = new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        Log.d("Retrofit Success", response.toString());
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        t.printStackTrace();
+                        Log.e("Err", t.getMessage());
+                    }
+                };
+
+                editData.enqueue(mRetrofitCallback);
+
+                Intent data = new Intent();
+                data.putExtra("textBirth", Birthday);
+                data.putExtra("textAllergy", Allergy);
+                data.putExtra("textDisease", Disease);
+                data.putExtra("textBloodtype", Bloodtype);
+                data.putExtra("textHeight", Height);
+                data.putExtra("textWeight", Weight);
+                data.putExtra("textEmerContact", EmerContact);
+
+                getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, data);
+                dismiss();
+                return true;
+            }
+        });
+
+        // PersonFrament에 저장
+        /*final Button submit = view.findViewById(R.id.submitBtn);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setPersonRetrofitInit();
+
+                String Birthday = textBirth.getText().toString();
+                String Allergy = textAllergyD.getText().toString();
+                String Disease = textDiseaseD.getText().toString();
+                String Bloodtype = textBloodtypeD.getText().toString();
+                String Height = textHeightD.getText().toString();
+                String Weight = textWeightD.getText().toString();
+                String EmerContact = textEmerContactD.getText().toString();
+
+                if (Height.equals("")) {
+                    Height = "0";
+                }
+
+                if (Weight.equals("")) {
+                    Weight = "0";
+                }
+
+                Call<JsonObject> editData = mRetrofitAPI.setPersonInfo(userID, Birthday,Disease, Allergy, Bloodtype, Height, Weight, EmerContact);
+
+                System.out.println(editData);
+
+                Callback<JsonObject> mRetrofitCallback = new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        Log.d("Retrofit Success", response.toString());
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        t.printStackTrace();
+                        Log.e("Err", t.getMessage());
+                    }
+                };
+
+                editData.enqueue(mRetrofitCallback);
+
+                Intent data = new Intent();
+                data.putExtra("textBirth", Birthday);
+                data.putExtra("textAllergy", Allergy);
+                data.putExtra("textDisease", Disease);
+                data.putExtra("textBloodtype", Bloodtype);
+                data.putExtra("textHeight", Height);
+                data.putExtra("textWeight", Weight);
+                data.putExtra("textEmerContact", EmerContact);
+
+                getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, data);
+                dismiss();
+            }
+        });*/
+        //view.findViewById(R.id.submitBtn).setOnClickListener(this);
 
         return view;
     }
 
+    /*
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        toolbar.setNavigationIcon(R.drawable.ic_close_white_24dp);
+        toolbar.inflateMenu(R.menu.save_menu);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                dismiss();
+                return true;
+            }
+        });
+
+    }
+/*
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -246,6 +478,6 @@ public class PersonMedDialog extends DialogFragment {
                 dismiss();
         }
     }
-*/
 
+*/
 }

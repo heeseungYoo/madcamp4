@@ -30,6 +30,12 @@
         android:textSize="20sp"/>
 
     <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="생년월일" />
+
+    <TextView
         android:id="@+id/textBirth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -85,13 +91,30 @@
         android:layout_height="wrap_content"
         android:text="키" />
 
-    <TextView
-        android:id="@+id/textHeight"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="userHegiht"
-        android:textSize="16sp"/>
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="userHegiht"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/textCm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="cm"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+
 
     <TextView
         android:id="@+id/textView12"
@@ -99,13 +122,30 @@
         android:layout_height="wrap_content"
         android:text="몸무게" />
 
-    <TextView
-        android:id="@+id/textWeight"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="userWeight"
-        android:textSize="16sp"/>
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="userWeight"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/textKg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="kg"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+
 
     <TextView
         android:id="@+id/textView13"
@@ -126,11 +166,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center|fill_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:background="#00FFFFFF"
         android:elevation="10dp"
-        android:text="        로그아웃        " />
+        android:text="로그아웃" />
 
 </LinearLayout>

@@ -12,28 +12,39 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project4_test1.HomeFragment.HomeFragment;
+import com.example.project4_test1.MainActivity;
 import com.example.project4_test1.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class QuizFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    TextView textView_question_number;
-    TextView textView_question;
-    Button button_next_question;
-    Button button_previous_question;
-    Button button_start_quiz;
+    private FragmentManager fragmentManager = getFragmentManager();
 
-    QuizAdapter adapter;
-    QuizAdapter.OnItemClickListener mListener;
-    String[] quiz_questions;
-    int[] quiz_answers;
-    int quiz_score;
-    int current_number;
+    private RecyclerView recyclerView;
+    private TextView textView_question_number;
+    private TextView textView_question;
+    private Button button_next_question;
+    private Button button_previous_question;
+    private Button button_start_quiz;
+
+    private QuizAdapter adapter;
+    private QuizAdapter.OnItemClickListener mListener;
+    private String[] quiz_questions;
+    private int[] quiz_answers;
+    private int quiz_score;
+    private int current_number;
 
     private View v;
+
+    public static QuizFragment newInstance() {
+        return new QuizFragment();
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_quiz, container, false);
@@ -159,6 +170,8 @@ public class QuizFragment extends Fragment {
         final ImageView star3 = view.findViewById(R.id.star3);
         final ImageView star4 = view.findViewById(R.id.star4);
         final ImageView star5 = view.findViewById(R.id.star5);
+        final Button retryBtn = view.findViewById(R.id.retryBtn);
+        final Button homeBtn = view.findViewById(R.id.homeBtn);
 
         score.setText(quiz_score+"점");
 
@@ -202,6 +215,23 @@ public class QuizFragment extends Fragment {
                 comment.setText("당신은 완벽한 힐러!");
                 break;
         }
+
+        retryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).replaceFragment(QuizFragment.newInstance());
+                dialog.dismiss();
+            }
+        });
+
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).replaceFragment(HomeFragment.newInstance());
+                dialog.dismiss();
+            }
+        });
+
         dialog.show();
     }
 }

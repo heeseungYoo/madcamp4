@@ -6,4 +6,5 @@
     <color name="colorGray">#C5C6B6</color>
     <color name="green_right">#8FBC94</color>
     <color name="red_wrong">#ED9282</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>

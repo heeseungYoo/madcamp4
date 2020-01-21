@@ -76,6 +76,10 @@ public class HomeFragment extends Fragment {
     private String userEmerContact;
     private String userDisease;
 
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_home, container, false);
 

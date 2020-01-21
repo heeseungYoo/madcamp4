@@ -76,18 +76,20 @@
         android:layout_marginBottom="20dp">
 
         <Button
+            android:id="@+id/retryBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="재도전"
+            android:layout_marginRight="20dp"
             android:fontFamily="@font/ridibatang"
-            android:layout_marginRight="20dp" />
+            android:text="재도전" />
 
         <Button
+            android:id="@+id/homeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="홈으로"
             android:layout_marginLeft="20dp"
-            android:fontFamily="@font/ridibatang" />
+            android:fontFamily="@font/ridibatang"
+            android:text="홈으로" />
 
     </LinearLayout>
 
