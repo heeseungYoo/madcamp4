@@ -21,8 +21,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
+import androidx.slidingpanelayout.widget.SlidingPaneLayout;
 
 import com.example.project4_test1.R;
 import com.example.project4_test1.RetrofitService;
@@ -38,6 +40,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -75,6 +80,8 @@ public class HomeFragment extends Fragment {
     private String userWeight;
     private String userEmerContact;
     private String userDisease;
+
+    private SlidingUpPanelLayout mLayout;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -120,7 +127,6 @@ public class HomeFragment extends Fragment {
 
         //View 전달
         button_call = v.findViewById(R.id.button_call);
-        button_findAED = v.findViewById(R.id.button_findAED);
         //mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map);
         mapView =  v.findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
@@ -136,14 +142,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        //AED 찾기 버튼 리스너 등록
+        button_findAED = v.findViewById(R.id.find_AED);
         button_findAED.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                //지도 보이게 설정
+            public void onClick(View v) {
                 map_container.setVisibility(View.VISIBLE);
-
                 //AED 공공데이터 요청
                 sendRequestAED task = new sendRequestAED();
                 try {
@@ -158,7 +161,7 @@ public class HomeFragment extends Fragment {
                     ArrayList<AEDinfo> result = task.execute(new LatLng(latitude, longitude)).get();
                     Toast.makeText(getContext(), "AED를 찾았습니다!", Toast.LENGTH_LONG).show();
 
-                    for (int i = 0; i < result.size(); i++){
+                    for (int i = 0; i < result.size(); i++) {
 
                         // 결과를 받아는 왔는데 내용이 비어있을 경우 에러처리
                         if (result.get(i).error.equals("error")) {
@@ -171,7 +174,7 @@ public class HomeFragment extends Fragment {
                                 .position(new LatLng(result.get(i).lat, result.get(i).lng))
                                 .title(result.get(i).address)
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
-                                .snippet("연락처 : "+ result.get(i).tel));
+                                .snippet("연락처 : " + result.get(i).tel));
                     }
 
                     //예쁜 스니펫 만들어줌 (폰트, 줄바꿈 등등)
@@ -182,6 +185,21 @@ public class HomeFragment extends Fragment {
                 } catch (ExecutionException ex) {
                     ex.printStackTrace();
                 }
+            }
+        });
+
+        mLayout = v.findViewById(R.id.sliding_layout);
+        mLayout.addPanelSlideListener(new SlidingUpPanelLayout.SimplePanelSlideListener() {
+            @Override
+            public void onPanelSlide(@NonNull View panel, float slideOffset) {
+
+
+            }
+
+            @Override
+            public void onPanelStateChanged(View panel, PanelState previousState, PanelState newState) {
+
+
             }
         });
 

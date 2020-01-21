@@ -40,22 +40,35 @@
         android:orientation="vertical"
         android:paddingTop="10dp"
         android:paddingStart="30dp"
-        android:paddingEnd="10dp"
+        android:paddingEnd="30dp"
         android:background="@drawable/shape_round_layout">
 
-        <ImageView
-            android:id="@+id/profile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_person_outline_black_24dp"/>
-
-        <TextView
-            android:id="@+id/textName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="name"
-            android:textSize="20sp"/>
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:id="@+id/profile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_person_outline_black_24dp"/>
+
+            <TextView
+                android:id="@+id/textName"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:text="name"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+
 
         <TextView
             android:id="@+id/textView15"
@@ -67,9 +80,14 @@
             android:id="@+id/textBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:text="userBirth"
             android:textSize="18sp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorAccent"
+            android:layout_marginBottom="5dp"/>
 
         <TextView
             android:id="@+id/textView8"
@@ -81,9 +99,14 @@
             android:id="@+id/textAllergy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:text="userAllergy"
             android:textSize="16sp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorAccent"
+            android:layout_marginBottom="5dp"/>
 
         <TextView
             android:id="@+id/textView"
@@ -95,9 +118,14 @@
             android:id="@+id/textDisease"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:text="userDisease"
             android:textSize="16sp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorAccent"/>
 
         <TextView
             android:id="@+id/textView10"
@@ -109,9 +137,14 @@
             android:id="@+id/textBloodtype"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:text="userBloodtype"
             android:textSize="16sp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorAccent"/>
 
         <TextView
             android:id="@+id/textView11"
@@ -128,7 +161,7 @@
                 android:id="@+id/textHeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:text="userHegiht"
                 android:textSize="16sp"/>
 
@@ -136,11 +169,16 @@
                 android:id="@+id/textCm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:text="cm"
                 android:textSize="16sp"/>
 
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorAccent"/>
 
 
 
@@ -159,7 +197,7 @@
                 android:id="@+id/textWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:text="userWeight"
                 android:textSize="16sp"/>
 
@@ -167,11 +205,16 @@
                 android:id="@+id/textKg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:text="kg"
                 android:textSize="16sp"/>
 
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorAccent"/>
 
 
 
@@ -185,16 +228,21 @@
             android:id="@+id/textEmerContact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:text="userEmerContact"
             android:textSize="16sp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorAccent"/>
 
         <Button
             android:id="@+id/logoutBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="30dp"
             android:background="#00FFFFFF"
             android:elevation="10dp"

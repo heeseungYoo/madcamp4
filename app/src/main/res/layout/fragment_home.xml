@@ -1,81 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.sothree.slidinguppanel.SlidingUpPanelLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sliding_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:gravity="bottom"
     app:umanoDragView="@id/map_container"
     app:umanoPanelHeight="50dp"
-    app:umanoShadowHeight="10dp">
+    app:umanoShadowHeight="10dp"
+    tools:context=".MainActivity">
 
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:background="@color/colorPrimaryDark">
-
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center_horizontal">
 
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="119에"
-            android:textSize="80sp"/>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/tmonmonsori"
+                android:text="119에"
+                android:textColor="@color/colorAccent"
+                android:textSize="80sp"
+                android:textStyle="italic"/>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:layout_gravity="right"
-            android:text="신고하기"
-            android:textSize="80sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="60dp"
+                android:fontFamily="@font/tmonmonsori"
+                android:textColor="@color/colorAccent"
+                android:text="신고하기"
+                android:textStyle="italic"
+                android:textSize="80sp" />
 
-        <ImageButton
-            android:id="@+id/button_call"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="130dp"
-            android:background="@drawable/round_button"
-            android:backgroundTint="@android:color/background_light"
-            android:backgroundTintMode="multiply"
-            android:elevation="10dp"
-            android:src="@drawable/red_button" />
+            <ImageButton
+                android:id="@+id/button_call"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="130dp"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:backgroundTintMode="multiply"
+                android:elevation="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/rec" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
-            android:textSize="70sp"
-            android:text="AED" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="350dp"
-            android:gravity="right"
-            android:text="자동심장제세동기"
-            android:textSize="50sp" />
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="360dp"
+                android:gravity="right"
+                android:fontFamily="@font/tmonmonsori"
+                android:text="자동심장제세동기"
+                android:textSize="45sp" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="400dp"
-            android:textSize="70sp"
-            android:text="찾기" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="197dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="300dp"
+                android:fontFamily="@font/tmonmonsori"
+                android:text="AED"
+                android:textColor="@color/colorSky"
+                android:textSize="70sp"
+                android:textStyle="italic" />
 
-    </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="209dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="400dp"
+                android:fontFamily="@font/tmonmonsori"
+                android:text="찾기"
+                android:textColor="@color/colorSky"
+                android:textSize="70sp"
+                android:textStyle="italic" />
+
+        </FrameLayout>
 
     </RelativeLayout>
 
@@ -84,22 +101,27 @@
         android:id="@+id/map_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/shape_round_dark_layout">
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button_findAED"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="15dp"
-        android:background="@android:color/transparent"
-        android:text="AED 찾기" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_arrow_drop_up_black_24dp"
+            android:layout_gravity="center"/>
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.MapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <Button
+            android:id="@+id/find_AED"
+            android:layout_margin="10dp"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_solid_layout"
+            android:text="새로고침"/>
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>
