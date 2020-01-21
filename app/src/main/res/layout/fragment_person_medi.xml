@@ -11,42 +11,20 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingEnd="16dp"
+            android:paddingStart="6dp"
             app:contentInsetStartWithNavigation="0dp"
+            android:theme="@style/FullScreenDialogStyle"
             app:navigationIcon="@drawable/ic_close_white_24dp"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-<!--
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/cancelBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="취소"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-
-            <Button
-                android:id="@+id/submitBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="저장" />
-
-
-        </LinearLayout>
-
--->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -54,6 +32,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:orientation="vertical" >
 
                 <TextView
@@ -62,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:text="name"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -81,7 +60,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:layout_weight="3"
+                        android:layout_weight="4"
                         android:clickable="true"
                         android:text="userBirth"
                         android:textSize="18sp" />
@@ -91,6 +70,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@drawable/shape_solid_layout"
                         android:text="선택" />
                 </LinearLayout>
 

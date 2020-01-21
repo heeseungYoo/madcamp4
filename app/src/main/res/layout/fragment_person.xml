@@ -3,173 +3,205 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="10dp"
-    android:paddingStart="30dp"
-    android:paddingEnd="10dp">
+    android:background="@color/colorPrimaryDark">
 
-    <Button
-        android:id="@+id/editBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="편집"
-        />
-
-    <ImageView
-        android:id="@+id/profile"
-        android:layout_width="50dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:src="@drawable/ic_person_outline_black_24dp"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp">
 
-    <TextView
-        android:id="@+id/textName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="name"
-        android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="30sp"
+            android:text="개인 정보"
+            android:textColor="@color/colorWhite"/>
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="생년월일" />
-
-    <TextView
-        android:id="@+id/textBirth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="userBirth"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="알레르기 및 약물 부작용" />
-
-    <TextView
-        android:id="@+id/textAllergy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="userAllergy"
-        android:textSize="16sp"/>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="의학적 질환" />
-
-    <TextView
-        android:id="@+id/textDisease"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="userDisease"
-        android:textSize="16sp"/>
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="혈액형" />
-
-    <TextView
-        android:id="@+id/textBloodtype"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="userBloodtype"
-        android:textSize="16sp"/>
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="키" />
+        <Button
+            android:id="@+id/editBtn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_solid_layout"
+            android:text="편집" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="10dp"
+        android:background="@drawable/shape_round_layout">
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_person_outline_black_24dp"/>
 
         <TextView
-            android:id="@+id/textHeight"
-            android:layout_width="wrap_content"
+            android:id="@+id/textName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="userHegiht"
+            android:text="name"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="생년월일" />
+
+        <TextView
+            android:id="@+id/textBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="userBirth"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알레르기 및 약물 부작용" />
+
+        <TextView
+            android:id="@+id/textAllergy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="userAllergy"
             android:textSize="16sp"/>
 
         <TextView
-            android:id="@+id/textCm"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="의학적 질환" />
+
+        <TextView
+            android:id="@+id/textDisease"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="cm"
+            android:text="userDisease"
             android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="혈액형" />
+
+        <TextView
+            android:id="@+id/textBloodtype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="userBloodtype"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="키" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textHeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="userHegiht"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textCm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="cm"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="몸무게" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="userWeight"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textKg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="kg"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="긴급 연락처" />
+
+        <TextView
+            android:id="@+id/textEmerContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="userEmerContact"
+            android:textSize="16sp"/>
+
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center|fill_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:background="#00FFFFFF"
+            android:elevation="10dp"
+            android:text="로그아웃" />
+
 
     </LinearLayout>
 
 
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="몸무게" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="userWeight"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/textKg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="kg"
-            android:textSize="16sp"/>
-
-    </LinearLayout>
-
-
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="긴급 연락처" />
-
-    <TextView
-        android:id="@+id/textEmerContact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="userEmerContact"
-        android:textSize="16sp"/>
-
-    <Button
-        android:id="@+id/logoutBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center|fill_horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        android:background="#00FFFFFF"
-        android:elevation="10dp"
-        android:text="로그아웃" />
 
 </LinearLayout>

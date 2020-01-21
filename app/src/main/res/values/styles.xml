@@ -1,14 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
-    <style name="FullScreenDialogStyle2" parent="Base.V14.Theme.MaterialComponents.Dialog.Bridge"/>
 
     <style name="FullScreenDialogStyle" parent="Theme.MaterialComponents.Light.Dialog">
         <!--<item name="android:windowNoTitle">true</item>-->
@@ -19,7 +17,7 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowBackground">@color/colorWhite</item>
         <item name="actionMenuTextColor">@color/colorAccent</item>
-
+        <item name="android:actionMenuTextColor">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.Slide">
