@@ -12,8 +12,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:paddingEnd="16dp"
+            android:paddingEnd="20dp"
             android:paddingStart="6dp"
+            android:background="@color/colorPrimaryDark"
             app:contentInsetStartWithNavigation="0dp"
             android:theme="@style/FullScreenDialogStyle"
             app:navigationIcon="@drawable/ic_close_white_24dp"/>
@@ -22,12 +23,13 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:background="@drawable/shape_round_layout"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"

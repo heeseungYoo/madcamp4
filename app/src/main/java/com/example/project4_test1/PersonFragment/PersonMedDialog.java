@@ -32,8 +32,6 @@ import androidx.fragment.app.DialogFragment;
 import com.example.project4_test1.MainActivity;
 import com.example.project4_test1.R;
 import com.example.project4_test1.RetrofitService;
-import com.franmontiel.fullscreendialog.FullScreenDialogContent;
-import com.franmontiel.fullscreendialog.FullScreenDialogController;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.JsonObject;

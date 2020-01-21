@@ -11,11 +11,11 @@
     <style name="FullScreenDialogStyle" parent="Theme.MaterialComponents.Light.Dialog">
         <!--<item name="android:windowNoTitle">true</item>-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:windowIsFloating">false</item>
-        <item name="android:windowBackground">@color/colorWhite</item>
+        <item name="android:windowBackground">@color/colorPrimaryDark</item>
         <item name="actionMenuTextColor">@color/colorAccent</item>
         <item name="android:actionMenuTextColor">@color/colorAccent</item>
     </style>

@@ -19,8 +19,6 @@ import com.example.project4_test1.LoginActivity;
 import com.example.project4_test1.R;
 import com.example.project4_test1.RetrofitService;
 import com.example.project4_test1.SaveSharedPreference;
-import com.franmontiel.fullscreendialog.FullScreenDialogContent;
-import com.franmontiel.fullscreendialog.FullScreenDialogFragment;
 import com.google.gson.JsonArray;
 
 import org.w3c.dom.Text;
@@ -31,7 +29,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PersonFragment extends Fragment implements FullScreenDialogFragment.OnConfirmListener, FullScreenDialogFragment.OnDiscardListener {
+public class PersonFragment extends Fragment {
 
     private View v;
     private static final int DIALOG_REQUEST_CODE = 1234;
@@ -119,15 +117,6 @@ public class PersonFragment extends Fragment implements FullScreenDialogFragment
         return v;
     }
 
-    @Override
-    public void onConfirm(@Nullable Bundle result) {
-        Toast.makeText(getContext(), "submit", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onDiscard() {
-        Toast.makeText(getContext(), "cancel", Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
